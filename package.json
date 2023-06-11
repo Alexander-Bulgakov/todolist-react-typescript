@@ -10,8 +10,11 @@
   "author": "Alexander Bulgakov",
   "license": "ISC",
   "dependencies": {
+    "@types/styled-components": "^5.1.26",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.9.0",
+    "styled-components": "^5.3.10"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",

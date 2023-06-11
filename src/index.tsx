@@ -1,15 +1,19 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
-// import { createGlobalStyle } from 'styled-components';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { ReactDOM } from 'react';
-/*
+
 const GlobalStyle = createGlobalStyle`
 * {
   padding: 0;
   margin: 0;
   border: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+}
+
+:root {
+  font-size: 1em;
 }
 
 *,
@@ -41,6 +45,7 @@ html,
 body {
   height: 100%;
   width: 100%;
+  background-color: #f5f5f5;
   overflow: hidden;
   font-size: 100%;
   line-height: 1;
@@ -100,7 +105,23 @@ a {
   color: inherit;
 }
 `;
-*/
+
+const theme = {
+  fs: {
+    big: '4.5rem',
+    medium: '1.2rem',
+    small: '0.8rem',
+  },
+  color: {
+    grey: '#e6e6e6',
+  },
+};
+
 const container = document.getElementById('root')!;
 const root = createRoot(container);
-root.render(<App />);
+root.render(
+  <ThemeProvider theme={theme}>
+    <GlobalStyle />
+    <App />
+  </ThemeProvider>,
+);
