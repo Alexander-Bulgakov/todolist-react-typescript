@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-// import InputGroup from './InputGroup';
 import TodoListFooter from './TodoListFooter';
 import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
-import { BsCircle } from 'react-icons/bs';
+import Todo from './Todo';
 
 const StyledTodoList = styled.div`
   display: flex;
@@ -11,6 +10,7 @@ const StyledTodoList = styled.div`
   width: 800px;
   margin: 0 auto;
   background-color: white;
+  box-shadow: 0 2px 5px 0 ${(props) => props.theme.color.grey};
 `;
 
 const StyledInputGroup = styled.div`
@@ -19,6 +19,11 @@ const StyledInputGroup = styled.div`
   align-items: center;
   padding: 0.5em;
   min-height: 60px;
+  border-bottom: solid ${({ theme }) => theme.color.grey} 2px;
+`;
+
+const ListItem = styled.li`
+  border-bottom: solid ${({ theme }) => theme.color.grey} 1px;
 `;
 
 const Input = styled.input`
@@ -28,31 +33,19 @@ const Input = styled.input`
   font-style: italic;
   font-weight: 400;
   font-size: ${({ theme }) => theme.fs.medium};
-  color: ${({ theme }) => theme.color.grey};
+  // color: ${({ theme }) => theme.color.grey};
 `;
 
-const TodoWrapper = styled(StyledInputGroup)`
-  padding: 0.7em;
-  gap: 0.2em;
-`;
-const Todo = styled.div`
-  height: 100%;
-  width: 100%;
-  padding: 0.5em;
-  // font-style: italic;
-  font-weight: 400;
-  font-size: ${({ theme }) => theme.fs.medium};
-  color: black;
-`;
-
-interface iTodo {
+export interface iTodo {
   text: string;
   id: string;
+  active: boolean;
 }
 
 const TodoList = () => {
   const [todos, setTodos] = useState<iTodo[]>([]);
   const [text, setText] = useState('');
+  const [itemsLeft, setItemsLeft] = useState(0);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
@@ -65,16 +58,37 @@ const TodoList = () => {
         {
           text,
           id: Date.now().toString(),
+          active: true,
         },
       ]);
       setText('');
     }
   };
+
+  const toggleActive = (e: React.MouseEvent<SVGAElement, MouseEvent>, id: any) => {
+    const todosUpdated = todos.map((todo) => {
+      if (todo.id !== id) return todo;
+
+      return {
+        ...todo,
+        active: !todo.active,
+      };
+    });
+
+    setTodos(todosUpdated);
+  };
+
+  useEffect(() => {
+    const todosLeft = todos.filter((todo) => todo.active === true);
+    setItemsLeft(todosLeft.length);
+    console.log(itemsLeft);
+  }, [itemsLeft]);
+
   console.log(todos);
+  console.log(itemsLeft);
 
   return (
     <StyledTodoList>
-      {/* <InputGroup addTodo={addTodo} /> */}
       <StyledInputGroup>
         <MdOutlineKeyboardArrowUp
           size={'2em'}
@@ -82,25 +96,27 @@ const TodoList = () => {
           style={{ transform: todos.length > 0 ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }}
         />
         <Input
+          placeholder="What needs to be done?"
           value={text}
           onChange={handleChange}
           onKeyDown={addTodo}
         />
       </StyledInputGroup>
       <ul>
-        {todos.map(({ id, text }) => {
+        {todos.map(({ id, text, active }) => {
           return (
-            <TodoWrapper key={id}>
-              <BsCircle
-                size={'1.5em'}
-                color="#e6e6e6"
+            <ListItem key={id}>
+              <Todo
+                id={id}
+                text={text}
+                active={active}
+                toggleActive={toggleActive}
               />
-              <Todo>{text}</Todo>
-            </TodoWrapper>
+            </ListItem>
           );
         })}
       </ul>
-      <TodoListFooter />
+      <TodoListFooter todos={todos} />
     </StyledTodoList>
   );
 };
