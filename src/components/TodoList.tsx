@@ -4,6 +4,7 @@ import TodoListFooter from './TodoListFooter';
 import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import Todo from './Todo';
 import InputGroup from './InputGroup';
+import TodoListItems from './TodoListItems';
 
 const StyledTodoList = styled.div`
   display: flex;
@@ -46,9 +47,9 @@ export interface iTodo {
 const TodoList = () => {
   const [todos, setTodos] = useState<iTodo[]>([]);
   const [itemsLeft, setItemsLeft] = useState<number>(0);
-  const [filter, setFilter] = useState<string>('all');
+  const [filter, setFilter] = useState<string | null>(null);
 
-  const addTodo = (e: any, text: string) => {
+  const addTodo = (text: string) => {
     setTodos([
       ...todos,
       {
@@ -59,7 +60,7 @@ const TodoList = () => {
     ]);
   };
 
-  const toggleActive = (e: React.MouseEvent<SVGAElement, MouseEvent>, id: any) => {
+  const toggleActive = (id: any) => {
     const todosUpdated = todos.map((todo) => {
       if (todo.id !== id) return todo;
 
@@ -84,20 +85,10 @@ const TodoList = () => {
   return (
     <StyledTodoList>
       <InputGroup addTodo={addTodo} />
-      <ul>
-        {todos.map(({ id, text, active }) => {
-          return (
-            <ListItem key={id}>
-              <Todo
-                id={id}
-                text={text}
-                active={active}
-                toggleActive={toggleActive}
-              />
-            </ListItem>
-          );
-        })}
-      </ul>
+      <TodoListItems
+        todos={todos}
+        toggleActive={toggleActive}
+      />
       <TodoListFooter todos={todos} />
     </StyledTodoList>
   );

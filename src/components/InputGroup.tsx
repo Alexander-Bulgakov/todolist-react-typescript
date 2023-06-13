@@ -8,6 +8,7 @@ const StyledInputGroup = styled.div`
   align-items: center;
   padding: 0.5em;
   min-height: 60px;
+  border-bottom: solid ${({ theme }) => theme.color.grey} 2px;
 `;
 
 const Input = styled.input`
@@ -35,7 +36,7 @@ const InputGroup = ({ addTodo }: InputGroupProps) => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, text: string) => {
     if (e.key === 'Enter' && text !== '') {
-      addTodo(e, text);
+      addTodo(text);
       setText('');
     }
   };
