@@ -22,7 +22,11 @@ const TodoListFooter = ({ todos }: TodosProps) => {
   return (
     <StyledTodoListFooter>
       <span>{todosLeft.length} items left</span>
-      <div>3 buttons</div>
+      <div>
+        <button>All</button>
+        <button>Active</button>
+        <button>Complited</button>
+      </div>
       <button>clear</button>
     </StyledTodoListFooter>
   );

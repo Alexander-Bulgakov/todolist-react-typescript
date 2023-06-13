@@ -21,7 +21,9 @@ const Input = styled.input`
 `;
 
 interface InputGroupProps {
-  addTodo?: React.KeyboardEvent<HTMLInputElement>; // form events! the generic parameter is the type of event.target
+  // addTodo?: React.KeyboardEvent<HTMLInputElement>;
+  addTodo?: any;
+  // text: string;
 }
 
 const InputGroup = ({ addTodo }: InputGroupProps) => {
@@ -29,6 +31,13 @@ const InputGroup = ({ addTodo }: InputGroupProps) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, text: string) => {
+    if (e.key === 'Enter' && text !== '') {
+      addTodo(e, text);
+      setText('');
+    }
   };
   return (
     <StyledInputGroup>
@@ -39,7 +48,7 @@ const InputGroup = ({ addTodo }: InputGroupProps) => {
       <Input
         value={text}
         onChange={handleChange}
-        // onKeyDown={addTodo}
+        onKeyDown={(e) => handleKeyDown(e, text)}
       />
     </StyledInputGroup>
   );

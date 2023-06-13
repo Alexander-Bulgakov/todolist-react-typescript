@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TodoListFooter from './TodoListFooter';
 import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
 import Todo from './Todo';
+import InputGroup from './InputGroup';
 
 const StyledTodoList = styled.div`
   display: flex;
@@ -44,25 +45,18 @@ export interface iTodo {
 
 const TodoList = () => {
   const [todos, setTodos] = useState<iTodo[]>([]);
-  const [text, setText] = useState('');
-  const [itemsLeft, setItemsLeft] = useState(0);
+  const [itemsLeft, setItemsLeft] = useState<number>(0);
+  const [filter, setFilter] = useState<string>('all');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-  };
-
-  const addTodo = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && text !== '') {
-      setTodos([
-        ...todos,
-        {
-          text,
-          id: Date.now().toString(),
-          active: true,
-        },
-      ]);
-      setText('');
-    }
+  const addTodo = (e: any, text: string) => {
+    setTodos([
+      ...todos,
+      {
+        text,
+        id: Date.now().toString(),
+        active: true,
+      },
+    ]);
   };
 
   const toggleActive = (e: React.MouseEvent<SVGAElement, MouseEvent>, id: any) => {
@@ -89,19 +83,7 @@ const TodoList = () => {
 
   return (
     <StyledTodoList>
-      <StyledInputGroup>
-        <MdOutlineKeyboardArrowUp
-          size={'2em'}
-          color="#e6e6e6"
-          style={{ transform: todos.length > 0 ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }}
-        />
-        <Input
-          placeholder="What needs to be done?"
-          value={text}
-          onChange={handleChange}
-          onKeyDown={addTodo}
-        />
-      </StyledInputGroup>
+      <InputGroup addTodo={addTodo} />
       <ul>
         {todos.map(({ id, text, active }) => {
           return (
