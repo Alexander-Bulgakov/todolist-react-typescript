@@ -19,7 +19,7 @@ interface TodosProps {
 const TodoListFooter = ({ todos }: TodosProps) => {
   const [todosLeft, setTodosLeft] = useState<iTodo[]>([]);
   useEffect(() => {
-    setTodosLeft(todos.filter((todo: iTodo) => todo.active));
+    setTodosLeft(todos.filter((todo: iTodo) => todo.status === 'active'));
   }, [todos]);
   return (
     <StyledTodoListFooter>

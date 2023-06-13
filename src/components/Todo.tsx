@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { iTodo } from './TodoList';
 import { BsCircle, BsCheckCircle } from 'react-icons/bs';
 interface Props {
-  active: boolean;
+  status: string;
 }
 
 const StyledInputGroup = styled.div`
@@ -26,18 +26,18 @@ const StyledTodo = styled.div<Props>`
   // font-style: italic;
   font-weight: 400;
   font-size: ${({ theme }) => theme.fs.medium};
-  color: ${({ active, theme }) => (active ? 'black' : theme.color.grey)};
-  text-decoration: ${({ active }) => (active ? 'none' : 'line-through')};
+  color: ${({ status, theme }) => (status === 'active' ? 'black' : theme.color.grey)};
+  text-decoration: ${({ status }) => (status === 'active' ? 'none' : 'line-through')};
 `;
 
 interface iTodoProps extends iTodo {
   toggleActive: (e: React.MouseEvent<SVGAElement, MouseEvent>, id: string) => void;
 }
 
-const Todo = ({ id, text, active, toggleActive }: iTodoProps) => {
+const Todo = ({ id, text, status, toggleActive }: iTodoProps) => {
   return (
     <TodoWrapper key={id}>
-      {active ? (
+      {status === 'active' ? (
         <BsCircle
           size={'1.5em'}
           color="#e6e6e6"
@@ -52,7 +52,7 @@ const Todo = ({ id, text, active, toggleActive }: iTodoProps) => {
           onClick={(e: React.MouseEvent<SVGAElement>) => toggleActive(e, id)}
         />
       )}
-      <StyledTodo active={active}>{text}</StyledTodo>
+      <StyledTodo status={status}>{text}</StyledTodo>
     </TodoWrapper>
   );
 };

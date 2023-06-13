@@ -15,13 +15,13 @@ interface TodoListItemsProps {
 const TodoListItems = ({ todos, toggleActive }: TodoListItemsProps) => {
   return (
     <ul>
-      {todos?.map(({ id, text, active }) => {
+      {todos?.map(({ id, text, status }) => {
         return (
           <ListItem key={id}>
             <Todo
               id={id}
               text={text}
-              active={active}
+              status={status}
               toggleActive={() => toggleActive(id)}
             />
           </ListItem>
