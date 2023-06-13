@@ -35,7 +35,12 @@ const TodoList = () => {
     setFilteredTodos(todos);
   }, [todos]);
 
-  const value = { filter, setFilter };
+  const deleteComplitedTodos = () => {
+    const activeTodos = todos.filter(({ status }) => status === 'active');
+    setTodos(activeTodos);
+  };
+
+  const value = { filter, setFilter, deleteComplitedTodos };
   const addTodo = (text: string) => {
     setTodos([
       ...todos,
@@ -75,13 +80,19 @@ const TodoList = () => {
 
   return (
     <StyledTodoList>
-      <InputGroup addTodo={addTodo} />
+      <InputGroup
+        addTodo={addTodo}
+        todosLength={filteredTodos.length}
+      />
       <TodoListItems
         todos={filteredTodos}
         toggleActive={toggleActive}
       />
       <Context.Provider value={value}>
-        <TodoListFooter todos={todos} />
+        <TodoListFooter
+          todos={todos}
+          deleteComplitedTodos={deleteComplitedTodos}
+        />
       </Context.Provider>
     </StyledTodoList>
   );

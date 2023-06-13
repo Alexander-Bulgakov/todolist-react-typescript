@@ -22,12 +22,11 @@ const Input = styled.input`
 `;
 
 interface InputGroupProps {
-  // addTodo?: React.KeyboardEvent<HTMLInputElement>;
   addTodo?: any;
-  // text: string;
+  todosLength: number;
 }
 
-const InputGroup = ({ addTodo }: InputGroupProps) => {
+const InputGroup = ({ addTodo, todosLength }: InputGroupProps) => {
   const [text, setText] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +44,11 @@ const InputGroup = ({ addTodo }: InputGroupProps) => {
       <MdOutlineKeyboardArrowUp
         size={'2em'}
         color="#e6e6e6"
+        style={
+          todosLength > 0
+            ? { transform: 'rotate(180deg)', transition: 'transform 0.3s' }
+            : { transition: 'transform 0.3s' }
+        }
       />
       <Input
         value={text}

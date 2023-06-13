@@ -14,9 +14,10 @@ const StyledTodoListFooter = styled.div`
 
 interface TodosProps {
   todos: iTodo[];
+  deleteComplitedTodos: () => void;
 }
 
-const TodoListFooter = ({ todos }: TodosProps) => {
+const TodoListFooter = ({ todos, deleteComplitedTodos }: TodosProps) => {
   const [todosLeft, setTodosLeft] = useState<iTodo[]>([]);
   useEffect(() => {
     setTodosLeft(todos.filter((todo: iTodo) => todo.status === 'active'));
@@ -25,7 +26,7 @@ const TodoListFooter = ({ todos }: TodosProps) => {
     <StyledTodoListFooter>
       <span>{todosLeft.length} items left</span>
       <FiltersGroup />
-      <Button>Clear complited</Button>
+      <Button onClick={deleteComplitedTodos}>Clear complited</Button>
     </StyledTodoListFooter>
   );
 };
