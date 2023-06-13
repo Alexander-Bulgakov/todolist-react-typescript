@@ -114,6 +114,7 @@ const theme = {
   },
   color: {
     grey: '#e6e6e6',
+    pearlBush: '#e9d9d8',
   },
 };
 

@@ -9,7 +9,7 @@ const StyledHeader = styled.h1`
   text-align: center;
   font-size: ${({ theme }) => theme.fs.big};
   font-weight: 300;
-  color: #e9d9d8;
+  color: ${({ theme }) => theme.color.pearlBush};
 `;
 
 const App: React.FC = () => {

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { iTodo } from './TodoList';
+import FiltersGroup from './FiltersGroup';
+import Button from './Button';
 
 const StyledTodoListFooter = styled.div`
   display: flex;
@@ -22,12 +24,8 @@ const TodoListFooter = ({ todos }: TodosProps) => {
   return (
     <StyledTodoListFooter>
       <span>{todosLeft.length} items left</span>
-      <div>
-        <button>All</button>
-        <button>Active</button>
-        <button>Complited</button>
-      </div>
-      <button>clear</button>
+      <FiltersGroup />
+      <Button>Clear complited</Button>
     </StyledTodoListFooter>
   );
 };
