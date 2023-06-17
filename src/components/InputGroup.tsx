@@ -22,7 +22,7 @@ const Input = styled.input`
 `;
 
 interface InputGroupProps {
-  addTodo?: any;
+  addTodo: (text: string) => void;
   todosLength: number;
 }
 
