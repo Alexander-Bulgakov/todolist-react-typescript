@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import Todo from './Todo';
-import { iTodo } from './TodoList';
+import { iTodo } from '../types/data';
 
 const ListItem = styled.li`
   border-bottom: solid ${({ theme }) => theme.color.grey} 1px;
 `;
 
 interface TodoListItemsProps {
-  todos?: iTodo[];
-  toggleActive?: any;
+  todos: iTodo[];
+  toggleStatus?: any;
 }
 
-const TodoListItems = ({ todos, toggleActive }: TodoListItemsProps) => {
+const TodoListItems = ({ todos, toggleStatus }: TodoListItemsProps) => {
   return (
     <ul>
       {todos?.map(({ id, text, status }) => {
@@ -22,7 +22,7 @@ const TodoListItems = ({ todos, toggleActive }: TodoListItemsProps) => {
               id={id}
               text={text}
               status={status}
-              toggleActive={() => toggleActive(id)}
+              toggleStatus={() => toggleStatus(id)}
             />
           </ListItem>
         );

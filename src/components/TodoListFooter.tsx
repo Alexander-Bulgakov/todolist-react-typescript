@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { iTodo } from './TodoList';
+import { iTodo } from '../types/data';
 import FiltersGroup from './FiltersGroup';
 import Button from './Button';
 
