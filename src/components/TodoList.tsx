@@ -23,7 +23,6 @@ export const Context = createContext<iContext | null>(null);
 
 const TodoList = () => {
   const [todos, setTodos] = useState<iTodo[]>([]);
-  const [itemsLeft, setItemsLeft] = useState<number>(0);
   const [filter, setFilter] = useState<string>('all');
   const [filteredTodos, setFilteredTodos] = useState<iTodo[]>([]);
 
@@ -71,9 +70,6 @@ const TodoList = () => {
   };
 
   const value = { filter, setFilter, deleteComplitedTodos };
-
-  console.log(todos);
-  console.log(itemsLeft);
 
   return (
     <StyledTodoList>

@@ -9,7 +9,7 @@ const StyledFiltersGroup = styled.div`
   gap: 0.5em;
 `;
 
-const FiltersGroup = () => {
+const FiltersGroup: React.FC = () => {
   const [activeButtonIndex, setactiveButtonIndex] = useState(0);
 
   const context = useContext(Context);

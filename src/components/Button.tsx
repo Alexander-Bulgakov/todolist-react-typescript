@@ -1,23 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface Props {
-  active: boolean;
-}
+type StyledButtonProps = {
+  active?: boolean;
+};
 
-const StyledButton = styled.button<Props>`
+const StyledButton = styled.button<StyledButtonProps>`
   padding: 0.3em 0.5em;
   background-color: inherit;
   // border: 1px solid transparent;
   border-radius: 3px;
-  border: ${({ active, theme }) => (!!active ? `solid ${theme.color.pearlBush} 1px` : '1px solid transparent')};
+  border: ${({ active, theme }) => (active ? `solid ${theme.color.pearlBush} 1px` : '1px solid transparent')};
   &:hover {
     border: solid ${({ theme }) => theme.color.pearlBush} 1px;
     transition: border 0.2s;
   }
 `;
+interface IButtonProps {
+  children: string;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  active?: boolean;
+}
 
-const Button = ({ children, onClick, active }: any) => {
+const Button: React.FC<IButtonProps> = ({ children, onClick, active }) => {
   return (
     <StyledButton
       active={active}
