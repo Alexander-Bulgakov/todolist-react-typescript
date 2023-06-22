@@ -1,7 +1,7 @@
-interface iTodo {
+interface ITodo {
   text: string;
   id: string;
   status: string;
 }
 
-export { iTodo };
+export { ITodo };

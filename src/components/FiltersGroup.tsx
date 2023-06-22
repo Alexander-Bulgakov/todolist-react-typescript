@@ -20,7 +20,7 @@ const FiltersGroup: React.FC = () => {
     { text: 'Complited', filter: 'complited' },
   ];
 
-  const toggleFilter = (e: React.MouseEvent<HTMLButtonElement>, buttonFilter: string, index: number) => {
+  const toggleFilter = (e: React.MouseEvent<HTMLButtonElement>, buttonFilter: string, index: number): void => {
     context?.setFilter(buttonFilter);
     setactiveButtonIndex(index);
   };

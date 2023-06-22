@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import TodoListFooter from './TodoListFooter';
 import InputGroup from './InputGroup';
 import TodoListItems from './TodoListItems';
-import { iTodo } from '../types/data';
+import { ITodo } from '../types/data';
 
 const StyledTodoList = styled.div`
   display: flex;
@@ -14,23 +14,23 @@ const StyledTodoList = styled.div`
   box-shadow: 0 2px 5px 0 ${(props) => props.theme.color.grey};
 `;
 
-interface iContext {
+interface IContext {
   filter: string;
   setFilter: (filter: string) => void;
 }
 
-export const Context = createContext<iContext | null>(null);
+export const Context = createContext<IContext | null>(null);
 
-const TodoList = () => {
-  const [todos, setTodos] = useState<iTodo[]>([]);
+const TodoList: React.FC = () => {
+  const [todos, setTodos] = useState<ITodo[]>([]);
   const [filter, setFilter] = useState<string>('all');
-  const [filteredTodos, setFilteredTodos] = useState<iTodo[]>([]);
+  const [filteredTodos, setFilteredTodos] = useState<ITodo[]>([]);
 
   useEffect(() => {
     setFilteredTodos(todos);
   }, [todos]);
 
-  const deleteComplitedTodos = () => {
+  const deleteComplitedTodos = (): void => {
     const activeTodos = todos.filter(({ status }) => status === 'active');
     setTodos(activeTodos);
   };
@@ -45,7 +45,7 @@ const TodoList = () => {
     setFilteredTodos(filtered);
   }, [filter]);
 
-  const addTodo = (text: string) => {
+  const addTodo = (text: string): void => {
     setTodos([
       ...todos,
       {
@@ -56,7 +56,7 @@ const TodoList = () => {
     ]);
   };
 
-  const toggleStatus = (id: any) => {
+  const toggleStatus = (id: string): void => {
     const todosUpdated = todos.map((todo) => {
       if (todo.id !== id) return todo;
 

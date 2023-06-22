@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { iTodo } from '../types/data';
+import { ITodo } from '../types/data';
 import { BsCircle, BsCheckCircle } from 'react-icons/bs';
-interface Props {
-  status: string;
-}
 
 const StyledInputGroup = styled.div`
   display: flex;
@@ -19,7 +16,11 @@ const TodoWrapper = styled(StyledInputGroup)`
   gap: 0.2em;
 `;
 
-const StyledTodo = styled.div<Props>`
+type TStyledTodoProps = {
+  status: string;
+};
+
+const StyledTodo = styled.div<TStyledTodoProps>`
   height: 100%;
   width: 100%;
   padding: 0.5em;
@@ -30,11 +31,11 @@ const StyledTodo = styled.div<Props>`
   text-decoration: ${({ status }) => (status === 'active' ? 'none' : 'line-through')};
 `;
 
-interface iTodoProps extends iTodo {
+interface ITodoProps extends ITodo {
   toggleStatus: (e: React.MouseEvent<SVGAElement, MouseEvent>, id: string) => void;
 }
 
-const Todo = ({ id, text, status, toggleStatus }: iTodoProps) => {
+const Todo: React.FC<ITodoProps> = ({ id, text, status, toggleStatus }) => {
   return (
     <TodoWrapper key={id}>
       {status === 'active' ? (

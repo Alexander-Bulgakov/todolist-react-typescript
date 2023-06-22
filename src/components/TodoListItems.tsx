@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import Todo from './Todo';
-import { iTodo } from '../types/data';
+import { ITodo } from '../types/data';
 
 const ListItem = styled.li`
   border-bottom: solid ${({ theme }) => theme.color.grey} 1px;
 `;
 
-interface TodoListItemsProps {
-  todos: iTodo[];
+interface ITodoListItemsProps {
+  todos: ITodo[];
   toggleStatus?: any;
 }
 
-const TodoListItems = ({ todos, toggleStatus }: TodoListItemsProps) => {
+const TodoListItems: React.FC<ITodoListItemsProps> = ({ todos, toggleStatus }) => {
   return (
     <ul>
       {todos?.map(({ id, text, status }) => {

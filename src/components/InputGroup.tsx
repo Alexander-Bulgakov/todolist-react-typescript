@@ -21,19 +21,19 @@ const Input = styled.input`
   color: ${({ theme }) => theme.color.grey};
 `;
 
-interface InputGroupProps {
+interface IInputGroupProps {
   addTodo: (text: string) => void;
   todosLength: number;
 }
 
-const InputGroup = ({ addTodo, todosLength }: InputGroupProps) => {
-  const [text, setText] = useState('');
+const InputGroup = ({ addTodo, todosLength }: IInputGroupProps) => {
+  const [text, setText] = useState<string>('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setText(e.target.value);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, text: string) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, text: string): void => {
     if (e.key === 'Enter' && text !== '') {
       addTodo(text);
       setText('');
