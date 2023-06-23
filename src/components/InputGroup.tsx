@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
 
@@ -28,6 +28,7 @@ interface IInputGroupProps {
 
 const InputGroup = ({ addTodo, todosLength }: IInputGroupProps) => {
   const [text, setText] = useState<string>('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setText(e.target.value);
@@ -39,6 +40,13 @@ const InputGroup = ({ addTodo, todosLength }: IInputGroupProps) => {
       setText('');
     }
   };
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   return (
     <StyledInputGroup>
       <MdOutlineKeyboardArrowUp
@@ -54,6 +62,7 @@ const InputGroup = ({ addTodo, todosLength }: IInputGroupProps) => {
         value={text}
         onChange={handleChange}
         onKeyDown={(e) => handleKeyDown(e, text)}
+        ref={inputRef}
       />
     </StyledInputGroup>
   );
