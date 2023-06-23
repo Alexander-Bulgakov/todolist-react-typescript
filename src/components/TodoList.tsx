@@ -47,14 +47,17 @@ const TodoList: React.FC = () => {
   }, [filter]);
 
   const addTodo = (text: string): void => {
-    setTodos([
-      ...todos,
-      {
-        text,
-        id: Date.now(),
-        status: 'active',
-      },
-    ]);
+    const trimmedText = text.trim();
+    if (trimmedText !== '') {
+      setTodos([
+        ...todos,
+        {
+          text: trimmedText,
+          id: Date.now(),
+          status: 'active',
+        },
+      ]);
+    }
   };
 
   const toggleStatus = (id: number): void => {
