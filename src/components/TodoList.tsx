@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import TodoListFooter from './TodoListFooter';
 import InputGroup from './InputGroup';
@@ -73,9 +73,9 @@ const TodoList: React.FC = () => {
     setTodos(todosUpdated);
   };
 
-  const toggleListVisible = (): void => {
+  const toggleListVisible = useCallback((): void => {
     setVisible((visible) => !visible);
-  };
+  }, []);
 
   const value = { filter, setFilter, deleteComplitedTodos };
 
@@ -104,3 +104,4 @@ const TodoList: React.FC = () => {
 };
 
 export default TodoList;
+// export default React.memo(TodoList);

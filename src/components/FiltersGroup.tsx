@@ -41,3 +41,4 @@ const FiltersGroup: React.FC = () => {
 };
 
 export default FiltersGroup;
+// export default React.memo(FiltersGroup);

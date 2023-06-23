@@ -68,4 +68,4 @@ const InputGroup = ({ addTodo, toggleListVisible, visible }: IInputGroupProps) =
   );
 };
 
-export default InputGroup;
+export default React.memo(InputGroup);
