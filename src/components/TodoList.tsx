@@ -46,19 +46,22 @@ const TodoList: React.FC = () => {
     setFilteredTodos(filtered);
   }, [filter]);
 
-  const addTodo = (text: string): void => {
-    const trimmedText = text.trim();
-    if (trimmedText !== '') {
-      setTodos([
-        ...todos,
-        {
-          text: trimmedText,
-          id: Date.now(),
-          status: 'active',
-        },
-      ]);
-    }
-  };
+  const addTodo = useCallback(
+    (text: string): void => {
+      const trimmedText = text.trim();
+      if (trimmedText !== '') {
+        setTodos([
+          ...todos,
+          {
+            text: trimmedText,
+            id: Date.now(),
+            status: 'active',
+          },
+        ]);
+      }
+    },
+    [filteredTodos],
+  );
 
   const toggleStatus = (id: number): void => {
     const todosUpdated = todos.map((todo) => {
