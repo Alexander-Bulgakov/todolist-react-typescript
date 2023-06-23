@@ -32,7 +32,7 @@ const StyledTodo = styled.div<TStyledTodoProps>`
 `;
 
 interface ITodoProps extends ITodo {
-  toggleStatus: (e: React.MouseEvent<SVGAElement, MouseEvent>, id: string) => void;
+  toggleStatus: (e: React.MouseEvent<SVGAElement, MouseEvent>, id: number) => void;
 }
 
 const Todo: React.FC<ITodoProps> = ({ id, text, status, toggleStatus }) => {

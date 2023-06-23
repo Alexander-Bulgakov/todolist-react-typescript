@@ -50,13 +50,13 @@ const TodoList: React.FC = () => {
       ...todos,
       {
         text,
-        id: Date.now().toString(),
+        id: Date.now(),
         status: 'active',
       },
     ]);
   };
 
-  const toggleStatus = (id: string): void => {
+  const toggleStatus = (id: number): void => {
     const todosUpdated = todos.map((todo) => {
       if (todo.id !== id) return todo;
 

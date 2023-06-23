@@ -1,6 +1,6 @@
 interface ITodo {
   text: string;
-  id: string;
+  id: number;
   status: string;
 }
 
