@@ -25,6 +25,7 @@ const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [filter, setFilter] = useState<string>('all');
   const [filteredTodos, setFilteredTodos] = useState<ITodo[]>([]);
+  const [visible, setVisible] = useState<boolean>(true);
 
   useEffect(() => {
     setFilteredTodos(todos);
@@ -69,18 +70,26 @@ const TodoList: React.FC = () => {
     setTodos(todosUpdated);
   };
 
+  const toggleListVisible = (): void => {
+    setVisible((visible) => !visible);
+  };
+
   const value = { filter, setFilter, deleteComplitedTodos };
 
   return (
     <StyledTodoList>
       <InputGroup
         addTodo={addTodo}
-        todosLength={filteredTodos.length}
+        toggleListVisible={toggleListVisible}
+        visible={visible}
       />
-      <TodoListItems
-        todos={filteredTodos}
-        toggleStatus={toggleStatus}
-      />
+      {visible ? (
+        <TodoListItems
+          todos={filteredTodos}
+          toggleStatus={toggleStatus}
+        />
+      ) : null}
+
       <Context.Provider value={value}>
         <TodoListFooter
           todos={todos}

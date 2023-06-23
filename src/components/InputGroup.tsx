@@ -23,10 +23,11 @@ const Input = styled.input`
 
 interface IInputGroupProps {
   addTodo: (text: string) => void;
-  todosLength: number;
+  toggleListVisible: () => void;
+  visible: boolean;
 }
 
-const InputGroup = ({ addTodo, todosLength }: IInputGroupProps) => {
+const InputGroup = ({ addTodo, toggleListVisible, visible }: IInputGroupProps) => {
   const [text, setText] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -52,10 +53,9 @@ const InputGroup = ({ addTodo, todosLength }: IInputGroupProps) => {
       <MdOutlineKeyboardArrowUp
         size={'2em'}
         color="#e6e6e6"
+        onClick={toggleListVisible}
         style={
-          todosLength > 0
-            ? { transform: 'rotate(180deg)', transition: 'transform 0.3s' }
-            : { transition: 'transform 0.3s' }
+          visible ? { transform: 'rotate(180deg)', transition: 'transform 0.3s' } : { transition: 'transform 0.3s' }
         }
       />
       <Input
