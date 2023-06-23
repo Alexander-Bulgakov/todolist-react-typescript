@@ -18,7 +18,7 @@ const Input = styled.input`
   font-style: italic;
   font-weight: 400;
   font-size: ${({ theme }) => theme.fs.medium};
-  color: ${({ theme }) => theme.color.grey};
+  color: ${({ theme }) => theme.color.pearlBush};
 `;
 
 interface IInputGroupProps {
