@@ -96,7 +96,14 @@ const TodoList: React.FC = () => {
     setVisible((visible) => !visible);
   }, []);
 
-  const value = { filter, setFilter, deleteComplitedTodos };
+  const value = useMemo(
+    () => ({
+      filter,
+      setFilter,
+      deleteComplitedTodos,
+    }),
+    [filter, setFilter, deleteComplitedTodos],
+  );
 
   return (
     <StyledTodoList>
