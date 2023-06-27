@@ -19,7 +19,7 @@ interface IContext {
   setFilter: (filter: string) => void;
 }
 
-export const Context = createContext<IContext | null>(null);
+export const FiltersContext = createContext<IContext | null>(null);
 
 const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
@@ -63,19 +63,6 @@ const TodoList: React.FC = () => {
     [filteredTodos],
   );
 
-  // const toggleStatus = (id: number): void => {
-  //   const todosUpdated = todos.map((todo) => {
-  //     if (todo.id !== id) return todo;
-
-  //     return {
-  //       ...todo,
-  //       status: todo.status === 'active' ? 'complited' : 'active',
-  //     };
-  //   });
-
-  //   setTodos(todosUpdated);
-  // };
-
   const toggleStatus = useCallback(
     (id: number): void => {
       const todosUpdated = todos.map((todo) => {
@@ -89,7 +76,7 @@ const TodoList: React.FC = () => {
 
       setTodos(todosUpdated);
     },
-    [filteredTodos],
+    [todos],
   );
 
   const toggleListVisible = useCallback((): void => {
@@ -100,9 +87,8 @@ const TodoList: React.FC = () => {
     () => ({
       filter,
       setFilter,
-      deleteComplitedTodos,
     }),
-    [filter, setFilter, deleteComplitedTodos],
+    [filter, setFilter],
   );
 
   return (
@@ -119,12 +105,12 @@ const TodoList: React.FC = () => {
         />
       ) : null}
 
-      <Context.Provider value={value}>
+      <FiltersContext.Provider value={value}>
         <TodoListFooter
           todos={todos}
           deleteComplitedTodos={deleteComplitedTodos}
         />
-      </Context.Provider>
+      </FiltersContext.Provider>
     </StyledTodoList>
   );
 };

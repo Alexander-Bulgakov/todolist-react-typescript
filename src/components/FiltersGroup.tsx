@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Button from './Button';
 import styled from 'styled-components';
-import { Context } from './TodoList';
+import { FiltersContext } from './TodoList';
 
 const StyledFiltersGroup = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const StyledFiltersGroup = styled.div`
 const FiltersGroup: React.FC = () => {
   const [activeButtonIndex, setactiveButtonIndex] = useState(0);
 
-  const context = useContext(Context);
+  const context = useContext(FiltersContext);
 
   const buttons = [
     { text: 'All', filter: 'all' },
@@ -40,5 +40,4 @@ const FiltersGroup: React.FC = () => {
   );
 };
 
-export default FiltersGroup;
-// export default React.memo(FiltersGroup);
+export default React.memo(FiltersGroup);
