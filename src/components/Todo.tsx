@@ -58,5 +58,4 @@ const Todo: React.FC<ITodoProps> = ({ id, text, status, toggleStatus }) => {
   );
 };
 
-// export default Todo;
 export default React.memo(Todo);

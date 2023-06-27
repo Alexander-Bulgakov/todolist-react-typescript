@@ -32,4 +32,3 @@ const TodoListFooter: React.FC<IFooterProps> = ({ todos, deleteComplitedTodos })
 };
 
 export default React.memo(TodoListFooter);
-// export default TodoListFooter;

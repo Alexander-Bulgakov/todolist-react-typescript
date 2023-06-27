@@ -32,4 +32,3 @@ const TodoListItems: React.FC<ITodoListItemsProps> = ({ todos, toggleStatus }) =
 };
 
 export default React.memo(TodoListItems);
-// export default TodoListItems;
