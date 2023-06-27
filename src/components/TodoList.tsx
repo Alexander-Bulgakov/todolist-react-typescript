@@ -1,9 +1,9 @@
 import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
+import { ITodo } from '../types/data';
 import TodoListFooter from './TodoListFooter';
 import InputGroup from './InputGroup';
 import TodoListItems from './TodoListItems';
-import { ITodo } from '../types/data';
 
 const StyledTodoList = styled.div`
   display: flex;

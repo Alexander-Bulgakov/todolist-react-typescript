@@ -7,8 +7,8 @@ const StyledInputGroup = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5em;
   min-height: 60px;
+  padding: 0.5em;
 `;
 
 const TodoWrapper = styled(StyledInputGroup)`
@@ -24,7 +24,6 @@ const StyledTodo = styled.div<TStyledTodoProps>`
   height: 100%;
   width: 100%;
   padding: 0.5em;
-  // font-style: italic;
   font-weight: 400;
   font-size: ${({ theme }) => theme.fs.medium};
   color: ${({ status, theme }) => (status === 'active' ? 'black' : theme.color.grey)};

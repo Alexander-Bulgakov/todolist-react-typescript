@@ -6,8 +6,8 @@ const StyledInputGroup = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5em;
   min-height: 60px;
+  padding: 0.5em;
   border-bottom: solid ${({ theme }) => theme.color.grey} 2px;
 `;
 
