@@ -13,18 +13,14 @@ const StyledTodoListFooter = styled.div`
 `;
 
 interface IFooterProps {
-  todos: ITodo[];
+  todosLeft: number;
   deleteComplitedTodos: () => void;
 }
 
-const TodoListFooter: React.FC<IFooterProps> = ({ todos, deleteComplitedTodos }) => {
-  const [todosLeft, setTodosLeft] = useState<ITodo[]>([]);
-  useEffect(() => {
-    setTodosLeft(todos.filter((todo: ITodo) => todo.status === 'active'));
-  }, [todos]);
+const TodoListFooter: React.FC<IFooterProps> = ({ todosLeft, deleteComplitedTodos }) => {
   return (
     <StyledTodoListFooter>
-      <span>{todosLeft.length} items left</span>
+      <span>{todosLeft} items left</span>
       <FiltersGroup />
       <Button onClick={deleteComplitedTodos}>Clear complited</Button>
     </StyledTodoListFooter>

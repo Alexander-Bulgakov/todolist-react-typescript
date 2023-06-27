@@ -26,14 +26,14 @@ const TodoList: React.FC = () => {
   const [filter, setFilter] = useState<string>('all');
   const [filteredTodos, setFilteredTodos] = useState<ITodo[]>([]);
   const [visible, setVisible] = useState<boolean>(true);
+  const [todosLeft, setTodosLeft] = useState<ITodo[]>([]);
+
+  useEffect(() => {
+    setTodosLeft(todos.filter((todo: ITodo) => todo.status === 'active'));
+  }, [todos]);
 
   useEffect(() => {
     setFilteredTodos(todos);
-  }, [todos]);
-
-  const deleteComplitedTodos = useCallback((): void => {
-    const activeTodos = todos.filter(({ status }) => status === 'active');
-    setTodos(activeTodos);
   }, [todos]);
 
   useEffect(() => {
@@ -45,6 +45,11 @@ const TodoList: React.FC = () => {
     const filtered = todos.filter((todo) => todo.status === filter);
     setFilteredTodos(filtered);
   }, [filter]);
+
+  const deleteComplitedTodos = useCallback((): void => {
+    const activeTodos = todos.filter(({ status }) => status === 'active');
+    setTodos(activeTodos);
+  }, [todos]);
 
   const addTodo = useCallback(
     (text: string): void => {
@@ -107,7 +112,7 @@ const TodoList: React.FC = () => {
 
       <FiltersContext.Provider value={value}>
         <TodoListFooter
-          todos={todos}
+          todosLeft={todosLeft.length}
           deleteComplitedTodos={deleteComplitedTodos}
         />
       </FiltersContext.Provider>
