@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import Button from './Button';
 import styled from 'styled-components';
+import Button from './Button';
 import { FiltersContext } from './TodoList';
 
 const StyledFiltersGroup = styled.div`

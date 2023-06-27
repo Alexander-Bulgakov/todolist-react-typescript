@@ -1,8 +1,8 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App';
-import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { ReactDOM } from 'react';
+import { createRoot } from 'react-dom/client';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import App from './App';
 
 const GlobalStyle = createGlobalStyle`
 * {

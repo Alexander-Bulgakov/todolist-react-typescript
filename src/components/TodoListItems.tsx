@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Todo from './Todo';
 import { ITodo } from '../types/data';
+import Todo from './Todo';
 
 const ListItem = styled.li`
   border-bottom: solid ${({ theme }) => theme.color.grey} 1px;

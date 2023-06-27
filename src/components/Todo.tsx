@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ITodo } from '../types/data';
 import { BsCircle, BsCheckCircle } from 'react-icons/bs';
+import { ITodo } from '../types/data';
 
 const StyledInputGroup = styled.div`
   display: flex;

@@ -1,6 +1,6 @@
 import React from 'react';
-import TodoList from './components/TodoList';
 import styled from 'styled-components';
+import TodoList from './components/TodoList';
 
 const StyledHeader = styled.h1`
   width: 100%;
