@@ -63,18 +63,34 @@ const TodoList: React.FC = () => {
     [filteredTodos],
   );
 
-  const toggleStatus = (id: number): void => {
-    const todosUpdated = todos.map((todo) => {
-      if (todo.id !== id) return todo;
+  // const toggleStatus = (id: number): void => {
+  //   const todosUpdated = todos.map((todo) => {
+  //     if (todo.id !== id) return todo;
 
-      return {
-        ...todo,
-        status: todo.status === 'active' ? 'complited' : 'active',
-      };
-    });
+  //     return {
+  //       ...todo,
+  //       status: todo.status === 'active' ? 'complited' : 'active',
+  //     };
+  //   });
 
-    setTodos(todosUpdated);
-  };
+  //   setTodos(todosUpdated);
+  // };
+
+  const toggleStatus = useCallback(
+    (id: number): void => {
+      const todosUpdated = todos.map((todo) => {
+        if (todo.id !== id) return todo;
+
+        return {
+          ...todo,
+          status: todo.status === 'active' ? 'complited' : 'active',
+        };
+      });
+
+      setTodos(todosUpdated);
+    },
+    [filteredTodos],
+  );
 
   const toggleListVisible = useCallback((): void => {
     setVisible((visible) => !visible);
