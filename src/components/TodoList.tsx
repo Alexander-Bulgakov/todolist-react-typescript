@@ -31,10 +31,10 @@ const TodoList: React.FC = () => {
     setFilteredTodos(todos);
   }, [todos]);
 
-  const deleteComplitedTodos = (): void => {
+  const deleteComplitedTodos = useCallback((): void => {
     const activeTodos = todos.filter(({ status }) => status === 'active');
     setTodos(activeTodos);
-  };
+  }, [todos]);
 
   useEffect(() => {
     if (filter === 'all') {
